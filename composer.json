@@ -23,6 +23,9 @@
     "autoload": {
         "psr-4": {
             "PCore\\Init\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     }
 }
