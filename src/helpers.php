@@ -5,12 +5,12 @@ declare(strict_types=1);
 use PCore\Config\Repository;
 use PCore\Di\Context;
 
-if (function_exists('base_path') === false) {
+if (function_exists('basePath') === false) {
     /**
      * @param string $path
      * @return string
      */
-    function base_path(string $path = ''): string
+    function basePath(string $path = ''): string
     {
         return BASE_PATH . ltrim($path, '/');
     }
