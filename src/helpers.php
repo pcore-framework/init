@@ -6,59 +6,68 @@ namespace PCore\Init;
 
 use PCore\Config\Repository;
 use PCore\Di\Context;
+use Psr\Container\{ContainerExceptionInterface, NotFoundExceptionInterface};
 use ReflectionException;
 
-/**
- * @param string $path
- * @return string
- */
-function basePath(string $path = ''): string
-{
-    return BASE_PATH . ltrim($path, '/');
+if (false === function_exists('basePath')) {
+    /**
+     * @param string $path
+     * @return string
+     */
+    function basePath(string $path = ''): string
+    {
+        return BASE_PATH . ltrim($path, '/');
+    }
 }
 
 if (function_exists('config') === false) {
     /**
      * @param string $key
-     * @param null|mixed $default
+     * @param $default
      * @return mixed
      * @throws ReflectionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     function config(string $key, $default = null): mixed
     {
-        /** @var Repository $config */
+        /**
+         * @var Repository $config
+         */
         $config = Context::getContainer()->make(Repository::class);
         return $config->get($key, $default);
     }
 }
 
-/**
- * @param string $key
- * @param null $default
- * @return mixed
- */
-function env(string $key, $default = null): mixed
-{
-    $value = getenv($key);
-    if ($value === false) {
-        return $default;
+if (false === function_exists('env')) {
+    /**
+     * @param string $key
+     * @param $default
+     * @return mixed
+     */
+    function env(string $key, $default = null): mixed
+    {
+        $value = getenv($key);
+        if ($value === false) {
+            return $default;
+        }
+        switch (strtolower($value)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return null;
+        }
+        if (($valueLength = strlen($value)) > 1 && $value[0] === '"' && $value[$valueLength - 1] === '"') {
+            return substr($value, 1, -1);
+        }
+        return $value;
     }
-    switch (strtolower($value)) {
-        case 'true':
-        case '(true)':
-            return true;
-        case 'false':
-        case '(false)':
-            return false;
-        case 'empty':
-        case '(empty)':
-            return '';
-        case 'null':
-        case '(null)':
-            return null;
-    }
-    if (($valueLength = strlen($value)) > 1 && $value[0] === '"' && $value[$valueLength - 1] === '"') {
-        return substr($value, 1, -1);
-    }
-    return $value;
 }
