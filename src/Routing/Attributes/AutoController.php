@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PCore\Init\Routing\Attributes;
 
 use Attribute;
-use PCore\HttpMessage\Contracts\RequestMethodInterface;
 use PCore\Routing\Contracts\ControllerInterface;
 
 /**
@@ -26,11 +25,7 @@ class AutoController implements ControllerInterface
     public function __construct(
         public string $prefix = '',
         public array  $middlewares = [],
-        public array  $methods = [
-            RequestMethodInterface::METHOD_GET,
-            RequestMethodInterface::METHOD_HEAD,
-            RequestMethodInterface::METHOD_POST
-        ],
+        public array  $methods = ['GET', 'HEAD', 'POST'],
         public array  $patterns = []
     )
     {

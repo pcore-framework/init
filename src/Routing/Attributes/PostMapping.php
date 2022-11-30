@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PCore\Init\Routing\Attributes;
 
 use Attribute;
-use PCore\HttpMessage\Contracts\RequestMethodInterface;
 
 /**
  * Class PostMapping
@@ -19,6 +18,6 @@ class PostMapping extends RequestMapping
     /**
      * @var array
      */
-    public array $methods = [RequestMethodInterface::METHOD_POST];
+    public array $methods = ['POST'];
 
 }

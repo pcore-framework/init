@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PCore\Init\Routing\Attributes;
 
 use Attribute;
-use PCore\HttpMessage\Contracts\RequestMethodInterface;
 
 /**
  * Class PutMapping
@@ -19,6 +18,6 @@ class PutMapping extends RequestMapping
     /**
      * @var array
      */
-    public array $methods = [RequestMethodInterface::METHOD_PUT];
+    public array $methods = ['PUT'];
 
 }

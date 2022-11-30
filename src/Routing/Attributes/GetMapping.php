@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PCore\Init\Routing\Attributes;
 
 use Attribute;
-use PCore\HttpMessage\Contracts\RequestMethodInterface;
 
 /**
  * Class GetMapping
@@ -19,6 +18,6 @@ class GetMapping extends RequestMapping
     /**
      * @var array|string[]
      */
-    public array $methods = [RequestMethodInterface::METHOD_GET, RequestMethodInterface::METHOD_HEAD];
+    public array $methods = ['GET', 'HEAD'];
 
 }

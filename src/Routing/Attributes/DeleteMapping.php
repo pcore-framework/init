@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PCore\Init\Routing\Attributes;
 
 use Attribute;
-use PCore\HttpMessage\Contracts\RequestMethodInterface;
 
 /**
  * Class DeleteMapping
@@ -19,6 +18,6 @@ class DeleteMapping extends RequestMapping
     /**
      * @var array|string[]
      */
-    public array $methods = [RequestMethodInterface::METHOD_DELETE];
+    public array $methods = ['DELETE'];
 
 }
