@@ -1,6 +1,6 @@
 {
-    "name": "pcore/init",
-    "description": "The Init component for PCore",
+    "name": "pcore/swoole",
+    "description": "The Swoole component for PCore",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -10,7 +10,7 @@
         "framework",
         "pcore-component"
     ],
-    "homepage": "https://github.com/pcore-framework/init",
+    "homepage": "https://github.com/pcore-framework/swoole",
     "authors": [
         {
             "name": "Magomedcoder",
@@ -18,14 +18,12 @@
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "ext-swoole": ">=4.6"
     },
     "autoload": {
         "psr-4": {
-            "PCore\\Init\\": "src/"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
+            "PCore\\Swoole\\": "src/"
+        }
     }
 }
